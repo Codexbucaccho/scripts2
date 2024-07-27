@@ -4253,7 +4253,8 @@ do
 			elseif cloneref(game:GetService("RunService")):IsStudio() then
 				data = {
 					expiry = os.time()*1000+1200000,
-					streak = 24
+					streak = 24,
+					showUI = true
 				}
 				isSucceed = true
 			end
@@ -4261,6 +4262,9 @@ do
 			if isSucceed then
 				_wlist.expiry = data.expiry / 1000
 				_wlist.streak = data.streak
+				if data.showUI ~= nil and data.showUI == false then
+					_wlist.showUI = true
+				end
 			end
 					
 			return isSucceed
@@ -4523,10 +4527,12 @@ do
 			setupStep:Complete();
 
 			local loadUIStep = startupStep.new("Loading UI...", "Loaded!", ui.whitelist.process):Start();
-			local basis = createBasis(directory);
+			if (_wlist.showUI == true) then
+				local basis = createBasis(directory);
+				completionSignal:Fire(true, basis);
+			end
 			loadUIStep:Complete();
 			task.wait(1);
-			completionSignal:Fire(true, basis);
 		end);
 
 		return ui;
@@ -4539,7 +4545,9 @@ do
 
 		if checkWhitelist() then
 			doSetup();
-			signal:Fire(true, createBasis(directory));
+			if (_wlist.showUI == true) then
+				signal:Fire(true, createBasis(directory));
+			end
 			return;
 		end
 
@@ -4784,7 +4792,7 @@ do
 		end
 
 		local function updateText()
-			local expiryTime, streak = fetchData()
+			local expiryTime, streak = _wlist.expiry or 0, _wlist.streak or 0
 			local keyless = false
 			
 			local function getTimeLeft()

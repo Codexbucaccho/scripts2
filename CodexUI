@@ -344,7 +344,7 @@ local framework = setmetatable({
 local _wlist = {
 	expiry = nil,
 	streak = 0,
-	showUI = false,
+	showUI = true,
 }
 
 do
@@ -4527,12 +4527,10 @@ do
 			setupStep:Complete();
 
 			local loadUIStep = startupStep.new("Loading UI...", "Loaded!", ui.whitelist.process):Start();
-			if (_wlist.showUI == true) then
-				local basis = createBasis(directory);
-				completionSignal:Fire(true, basis);
-			end
+			local basis = createBasis(directory);
 			loadUIStep:Complete();
 			task.wait(1);
+			completionSignal:Fire(true, basis);
 		end);
 
 		return ui;
@@ -4545,9 +4543,7 @@ do
 
 		if checkWhitelist() then
 			doSetup();
-			if (_wlist.showUI == true) then
-				signal:Fire(true, createBasis(directory));
-			end
+			signal:Fire(true, createBasis(directory));
 			return;
 		end
 

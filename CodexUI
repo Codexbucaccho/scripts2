@@ -733,59 +733,59 @@ do
 	framework.data.internalSettings = internalSettings;
 end
 
--- do -- No longer needed
--- 	local internalUtils = framework.dependencies.utils.internal;
--- 	local httpService = cloneref(game:GetService("HttpService"));
+do -- No longer needed
+	local internalUtils = framework.dependencies.utils.internal;
+	local httpService = cloneref(game:GetService("HttpService"));
 	
--- 	local builtin = {
--- 		{
--- 			title = "Dark Dex V4",
--- 			description = "A powerful game explorer GUI. Shows every instance of the game and all their properties. Useful for developers.",
--- 			icon = "rbxassetid://14806198159",
--- 			content = "local file = \"dexV4.lua\"; local raw = isfile and isfile(file) and readfile(file); raw = raw or game:HttpGetAsync(\"https://raw.githubusercontent.com/loglizzy/dexV4/main/source.lua\"); if isfile then task.spawn(writefile, file, game:HttpGet(url)); end loadstring(raw)();"
--- 		},
--- 		{
--- 			title = "Unnamed ESP",
--- 			description = "Player ESP for Roblox, fully undetectable, uses built in drawing API.",
--- 			icon = "rbxassetid://14806221310",
--- 			content = "pcall(function() loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua\"))(); end);"
--- 		},
--- 		{
--- 			title = "Hydroxide",
--- 			description = "General purpose pen-testing tool for games on the Roblox engine",
--- 			icon = "rbxassetid://14806229032",
--- 			content = "loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/Upbolt/Hydroxide/revision/init.lua\"))(); loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/Upbolt/Hydroxide/revision/ui/main.lua\"))();"
--- 		},
--- 		{
--- 			title = "Infinite Yield",
--- 			description = "Admin command line script with 300+ commands and 6 years of development",
--- 			icon = "rbxassetid://14806239733",
--- 			content = "loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source\"))();"
--- 		},
--- 		{
--- 			title = "Owl Hub",
--- 			description = "Owl Hub is a free Roblox script hub developed by Google Chrome and CriShoux. It currently has 30+ games.",
--- 			icon = "rbxassetid://14806252030",
--- 			content = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt\"))();"
--- 		},
--- 		{
--- 			title = "Reaper Hub",
--- 			description = "Reaper Hub is a free Roblox script hub developed by Reaper. It currently supports 35+ games using a single loadstring.",
--- 			icon = "rbxassetid://16359517197",
--- 			content = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/AyoReaper/Reaper-Hub/main/loader.lua\"))();"
--- 		}
--- 	};
+	local builtin = {
+		{
+			title = "Dark Dex V4",
+			description = "A powerful game explorer GUI. Shows every instance of the game and all their properties. Useful for developers.",
+			icon = "rbxassetid://14806198159",
+			content = "local file = \"dexV4.lua\"; local raw = isfile and isfile(file) and readfile(file); raw = raw or game:HttpGetAsync(\"https://raw.githubusercontent.com/loglizzy/dexV4/main/source.lua\"); if isfile then task.spawn(writefile, file, game:HttpGet(url)); end loadstring(raw)();"
+		},
+		{
+			title = "Unnamed ESP",
+			description = "Player ESP for Roblox, fully undetectable, uses built in drawing API.",
+			icon = "rbxassetid://14806221310",
+			content = "pcall(function() loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua\"))(); end);"
+		},
+		{
+			title = "Hydroxide",
+			description = "General purpose pen-testing tool for games on the Roblox engine",
+			icon = "rbxassetid://14806229032",
+			content = "loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/Upbolt/Hydroxide/revision/init.lua\"))(); loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/Upbolt/Hydroxide/revision/ui/main.lua\"))();"
+		},
+		{
+			title = "Infinite Yield",
+			description = "Admin command line script with 300+ commands and 6 years of development",
+			icon = "rbxassetid://14806239733",
+			content = "loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source\"))();"
+		},
+		{
+			title = "Owl Hub",
+			description = "Owl Hub is a free Roblox script hub developed by Google Chrome and CriShoux. It currently has 30+ games.",
+			icon = "rbxassetid://14806252030",
+			content = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt\"))();"
+		},
+		{
+			title = "Reaper Hub",
+			description = "Reaper Hub is a free Roblox script hub developed by Reaper. It currently supports 35+ games using a single loadstring.",
+			icon = "rbxassetid://16359517197",
+			content = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/AyoReaper/Reaper-Hub/main/loader.lua\"))();"
+		}
+	};
 	
--- 	local succ, data = pcall(function()
--- 		return httpService:JSONDecode(internalUtils:Request("https://rblxexploits.com/codexJSON.json"))
--- 	end)
+	-- local succ, data = pcall(function()
+	-- 	return httpService:JSONDecode(internalUtils:Request("https://rblxexploits.com/codexJSON.json"))
+	-- end)
 		
--- 	if succ and typeof(data) == "table" then
--- 		builtin = data
--- 	end
+	-- if succ and typeof(data) == "table" then
+	-- 	builtin = data
+	-- end
 	
--- 	framework.data.builtInScripts = builtin
--- end
+	framework.data.builtInScripts = builtin
+end
 
 do
 	--[[ Variables ]]--
@@ -4467,17 +4467,11 @@ do
 							local success, err = pcall(function()
 								data = httpService:JSONDecode(response)
 							end)
-							if success and data ~= nil then
-								if data.success == true then
-									internalUtils:Notify("Key redeemed, waiting for whitelist.")
-									changeTab(true)
-								end
-								
+							if res then
+								changeTab(true)
 								return
 							end
 						end
-
-						internalUtils:Notify("Invalid key.")
 					end,
 					Name = "register", 
 					Position = UDim2.new(0.5, 6, 0.5, 6), 

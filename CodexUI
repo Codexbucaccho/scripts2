@@ -341,6 +341,11 @@ local framework = setmetatable({
 	end
 });
 
+local _wlist = {
+	expiry = nil,
+	streak = 0,
+}
+
 do
 	--[[ Enum ]]--
 
@@ -711,76 +716,76 @@ do
 
 	function internalSettings:Initialize()
 		local data = backup;
-		if identifyexecutor then
-			local hostData = internalUtils:Request(isiosdevice() and "https://rblxexploits.com/codexiosUI.json" or "https://rblxexploits.com/codexUI.json");
-			if not hostData then
-				internalUtils:Notify("An error occured. Code: 001")
-				return;
-			end
+		-- if identifyexecutor then -- Currently disabled due to host issues
+		-- 	local hostData = internalUtils:Request(isiosdevice() and "https://rblxexploits.com/codexiosUI.json" or "https://rblxexploits.com/codexUI.json");
+		-- 	if not hostData then
+		-- 		internalUtils:Notify("An error occured. Code: 001")
+		-- 		return;
+		-- 	end
 			
-			pcall(function() -- SPDM
-				data = httpService:JSONDecode(hostData)
-			end)
-		end
+		-- 	pcall(function() -- SPDM
+		-- 		data = httpService:JSONDecode(hostData)
+		-- 	end)
+		-- end
 		self.data = data;
 	end
 
 	framework.data.internalSettings = internalSettings;
 end
 
-do
-	local internalUtils = framework.dependencies.utils.internal;
-	local httpService = cloneref(game:GetService("HttpService"));
+-- do -- No longer needed
+-- 	local internalUtils = framework.dependencies.utils.internal;
+-- 	local httpService = cloneref(game:GetService("HttpService"));
 	
-	local builtin = {
-		{
-			title = "Dark Dex V4",
-			description = "A powerful game explorer GUI. Shows every instance of the game and all their properties. Useful for developers.",
-			icon = "rbxassetid://14806198159",
-			content = "local file = \"dexV4.lua\"; local raw = isfile and isfile(file) and readfile(file); raw = raw or game:HttpGetAsync(\"https://raw.githubusercontent.com/loglizzy/dexV4/main/source.lua\"); if isfile then task.spawn(writefile, file, game:HttpGet(url)); end loadstring(raw)();"
-		},
-		{
-			title = "Unnamed ESP",
-			description = "Player ESP for Roblox, fully undetectable, uses built in drawing API.",
-			icon = "rbxassetid://14806221310",
-			content = "pcall(function() loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua\"))(); end);"
-		},
-		{
-			title = "Hydroxide",
-			description = "General purpose pen-testing tool for games on the Roblox engine",
-			icon = "rbxassetid://14806229032",
-			content = "loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/Upbolt/Hydroxide/revision/init.lua\"))(); loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/Upbolt/Hydroxide/revision/ui/main.lua\"))();"
-		},
-		{
-			title = "Infinite Yield",
-			description = "Admin command line script with 300+ commands and 6 years of development",
-			icon = "rbxassetid://14806239733",
-			content = "loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source\"))();"
-		},
-		{
-			title = "Owl Hub",
-			description = "Owl Hub is a free Roblox script hub developed by Google Chrome and CriShoux. It currently has 30+ games.",
-			icon = "rbxassetid://14806252030",
-			content = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt\"))();"
-		},
-		{
-			title = "Reaper Hub",
-			description = "Reaper Hub is a free Roblox script hub developed by Reaper. It currently supports 35+ games using a single loadstring.",
-			icon = "rbxassetid://16359517197",
-			content = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/AyoReaper/Reaper-Hub/main/loader.lua\"))();"
-		}
-	};
+-- 	local builtin = {
+-- 		{
+-- 			title = "Dark Dex V4",
+-- 			description = "A powerful game explorer GUI. Shows every instance of the game and all their properties. Useful for developers.",
+-- 			icon = "rbxassetid://14806198159",
+-- 			content = "local file = \"dexV4.lua\"; local raw = isfile and isfile(file) and readfile(file); raw = raw or game:HttpGetAsync(\"https://raw.githubusercontent.com/loglizzy/dexV4/main/source.lua\"); if isfile then task.spawn(writefile, file, game:HttpGet(url)); end loadstring(raw)();"
+-- 		},
+-- 		{
+-- 			title = "Unnamed ESP",
+-- 			description = "Player ESP for Roblox, fully undetectable, uses built in drawing API.",
+-- 			icon = "rbxassetid://14806221310",
+-- 			content = "pcall(function() loadstring(game:HttpGet(\"https://raw.githubusercontent.com/ic3w0lf22/Unnamed-ESP/master/UnnamedESP.lua\"))(); end);"
+-- 		},
+-- 		{
+-- 			title = "Hydroxide",
+-- 			description = "General purpose pen-testing tool for games on the Roblox engine",
+-- 			icon = "rbxassetid://14806229032",
+-- 			content = "loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/Upbolt/Hydroxide/revision/init.lua\"))(); loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/Upbolt/Hydroxide/revision/ui/main.lua\"))();"
+-- 		},
+-- 		{
+-- 			title = "Infinite Yield",
+-- 			description = "Admin command line script with 300+ commands and 6 years of development",
+-- 			icon = "rbxassetid://14806239733",
+-- 			content = "loadstring(game:HttpGetAsync(\"https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source\"))();"
+-- 		},
+-- 		{
+-- 			title = "Owl Hub",
+-- 			description = "Owl Hub is a free Roblox script hub developed by Google Chrome and CriShoux. It currently has 30+ games.",
+-- 			icon = "rbxassetid://14806252030",
+-- 			content = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/CriShoux/OwlHub/master/OwlHub.txt\"))();"
+-- 		},
+-- 		{
+-- 			title = "Reaper Hub",
+-- 			description = "Reaper Hub is a free Roblox script hub developed by Reaper. It currently supports 35+ games using a single loadstring.",
+-- 			icon = "rbxassetid://16359517197",
+-- 			content = "loadstring(game:HttpGet(\"https://raw.githubusercontent.com/AyoReaper/Reaper-Hub/main/loader.lua\"))();"
+-- 		}
+-- 	};
 	
-	local succ, data = pcall(function()
-		return httpService:JSONDecode(internalUtils:Request("https://rblxexploits.com/codexJSON.json"))
-	end)
+-- 	local succ, data = pcall(function()
+-- 		return httpService:JSONDecode(internalUtils:Request("https://rblxexploits.com/codexJSON.json"))
+-- 	end)
 		
-	if succ and typeof(data) == "table" then
-		builtin = data
-	end
+-- 	if succ and typeof(data) == "table" then
+-- 		builtin = data
+-- 	end
 	
-	framework.data.builtInScripts = builtin
-end
+-- 	framework.data.builtInScripts = builtin
+-- end
 
 do
 	--[[ Variables ]]--
@@ -3982,24 +3987,40 @@ do
 	--end
 	
 	local function fetchData()
+		if _wlist.expiry ~= nil then
+			return _wlist.expiry, _wlist.streak
+		end
+
 		local data = {
 			expiry = 0,
 			streak = 0
 		}
+		local isSucceed = false
 
-		local response = internalUtils:Request("https://api.codex.lol/v1/auth/authenticate", "POST")
+		local response = internalUtils:Request("https://bypass.nekoharu.com/v1/auth/authenticate", "POST")
 		if response then
 			local success, err = pcall(function()
 				data = httpService:JSONDecode(response)
 			end)
+			if success then
+				isSucceed = true
+			end
 		elseif cloneref(game:GetService("RunService")):IsStudio() then
 			data = {
 				expiry = os.time()*1000+1200000,
 				streak = 24
 			}
+			isSucceed = true
 		end
 
-		return data.expiry / 1000, data.streak;
+		if isSucceed then
+			_wlist.expiry = data.expiry / 1000
+			_wlist.streak = data.streak
+
+			return _wlist.expiry, _wlist.streak
+		end
+		
+		return nil, nil
 	end
 	
 	--[[ Module ]]--
@@ -4214,8 +4235,36 @@ do
 
 	local function checkWhitelist()
 		if getgenv then
-			return internalUtils:Request("https://api.codex.lol/v1/auth/authenticate", "POST") ~= false;
+			local data = {
+				expiry = 0,
+				streak = 0
+			}
+			local isSucceed = false
+
+			local response = internalUtils:Request("https://bypass.nekoharu.com/v1/auth/authenticate", "POST")
+			if response then
+				local success, err = pcall(function()
+					data = httpService:JSONDecode(response)
+				end)
+				if success then
+					isSucceed = true
+				end
+			elseif cloneref(game:GetService("RunService")):IsStudio() then
+				data = {
+					expiry = os.time()*1000+1200000,
+					streak = 24
+				}
+				isSucceed = true
+			end
+
+			if isSucceed then
+				_wlist.expiry = data.expiry / 1000
+				_wlist.streak = data.streak
+			end
+					
+			return isSucceed
 		end
+
 		return false;
 	end
 
@@ -4351,14 +4400,14 @@ do
 					AnchorPoint = Vector2.new(0.5, 1),
 					AutomaticSize = Enum.AutomaticSize.None,
 					MouseButton1Click = function()
-						if setclipboard then
-							local data = internalUtils:Request("https://api.codex.lol/v1/auth/session", "POST");
-							if data then
-								setclipboard("https://mobile.codex.lol?token=" .. httpService:JSONDecode(data).token);
-								internalUtils:Notify("Whitelist link has been set to your clipboard.")
-								return
-							end
-						end
+						-- if setclipboard then
+						-- 	local data = internalUtils:Request("https://api.codex.lol/v1/auth/session", "POST");
+						-- 	if data then
+						-- 		setclipboard("https://mobile.codex.lol?token=" .. httpService:JSONDecode(data).token);
+						-- 		internalUtils:Notify("Whitelist link has been set to your clipboard.")
+						-- 		return
+						-- 	end
+						-- end
 						internalUtils:Notify("Unable to retrieve whitelist key, please try again later.")
 					end,
 					Name = "copyWhitelistLink",
@@ -4409,16 +4458,25 @@ do
 					MouseButton1Click = function()
 						local key = ui.specialUserInput.key.Text;
 						if #key > 0 then
-							local res = internalUtils:Request("https://api.codex.lol/v1/auth/claim", "POST", {
+							local data = nil
+							local res = internalUtils:Request("https://bypass.nekoharu.com/v1/auth/claim", "POST", {
 								["Content-Type"] = "application/json"
 							}, {
 								key = key
 							});
-							if res then
-								changeTab(true);
-								return;
+							local success, err = pcall(function()
+								data = httpService:JSONDecode(response)
+							end)
+							if success and data ~= nil then
+								if data.success == true then
+									internalUtils:Notify("Key redeemed, waiting for whitelist.")
+									changeTab(true)
+								end
+								
+								return
 							end
 						end
+
 						internalUtils:Notify("Invalid key.")
 					end,
 					Name = "register", 
@@ -4440,33 +4498,8 @@ do
 		task.spawn(function()
 			local dataStep = startupStep.new("Fetching Codex Data...", "Data Fetched!", ui.whitelist.process):Start();
 			internalSettings:Initialize();
-			local function fetchData()
-				local data = {
-					expiry = 0,
-					streak = 0
-				}
 
-				local response = internalUtils:Request("https://api.codex.lol/v1/auth/authenticate", "POST")
-				if response then
-					local success, err = pcall(function()
-						data = httpService:JSONDecode(response)
-					end)
-				elseif cloneref(game:GetService("RunService")):IsStudio() then
-					data = {
-						expiry = os.time()*1000+1200000,
-						streak = 24
-					}
-				end
-
-				return data.expiry / 1000, data.streak;
-			end
-			local x, streak = fetchData();
-			changelog(streak).Parent = ui;
-			local currentVersion = identifyexecutor and select(2, identifyexecutor()) or "Invalid Version";
-			if not (cloneref(game:GetService("RunService")):IsStudio() or internalUtils:AreVersionsAlike(currentVersion, isiosdevice() and internalSettings.data.iosVersion or internalSettings.data.androidVersion)) then
-				dataStep:Complete("Please update Codex.");
-				return;
-			end
+			changelog(0).Parent = ui;
 			dataStep:Complete();
 
 			local whitelistStep = startupStep.new("Waiting for you to Whitelist...", "Whitelisted!", ui.whitelist.process):Start();
@@ -4475,7 +4508,7 @@ do
 			
 			repeat
 				if checked then
-					task.wait(3);
+					task.wait(10);
 				end
 				
 				checked = true
@@ -4715,24 +4748,40 @@ do
 		
 		-- SPDM Team | Streak & Expiring Timer
 		local function fetchData()
+			if _wlist.expiry ~= nil then
+				return _wlist.expiry, _wlist.streak
+			end
+
 			local data = {
 				expiry = 0,
 				streak = 0
 			}
-			
-			local response = internalUtils:Request("https://api.codex.lol/v1/auth/authenticate", "POST")
+			local isSucceed = false
+
+			local response = internalUtils:Request("https://bypass.nekoharu.com/v1/auth/authenticate", "POST")
 			if response then
 				local success, err = pcall(function()
 					data = httpService:JSONDecode(response)
 				end)
+				if success then
+					isSucceed = true
+				end
 			elseif cloneref(game:GetService("RunService")):IsStudio() then
 				data = {
-					expiry = os.time()*1000+1200000,
+					expiry = os.time() * 1000 + 1200000,
 					streak = 24
 				}
+				isSucceed = true
 			end
 
-			return data.expiry / 1000, data.streak;
+			if isSucceed then
+				_wlist.expiry = data.expiry / 1000
+				_wlist.streak = data.streak
+
+				return _wlist.expiry, _wlist.streak
+			end
+
+			return nil, nil
 		end
 
 		local function updateText()

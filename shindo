@@ -1,0 +1,55 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+getgenv().SecureMode = true
+
+local Window = Rayfield:CreateWindow({
+	Name = "Shindo Life - Furk Ultra",
+	LoadingTitle = "Shindo Life - Furk Ultra",
+	LoadingSubtitle = "Brought to you by Furk Ultra",
+})
+local Tab = Window:CreateTab("Main GUI's")
+
+local Section = Tab:CreateSection("Shindo Life Main GUI's")
+local Label = Tab:CreateLabel("Thanks for using Furk Ultra!")
+
+local Button = Tab:CreateButton({
+	Name = "NEW Infinite Spins",
+	Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/Alrbuddy/Shindo/main/SpinHub'))()
+	end,
+})
+local Button = Tab:CreateButton({
+	Name = "Premier Hub (#1)",
+	Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/TrustsenseDev/Utilities/main/Premier.lua', true))()
+	end,
+})
+local Button = Tab:CreateButton({
+	Name = "Platinum Hub (#2)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/NukeVsCity/TheALLHACKLoader/main/NukeLoader"))()
+	end,
+})
+local Button = Tab:CreateButton({
+	Name = "VG Hub",
+	Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/1201for/V.G-Hub/main/V.Ghub'))()
+	end,
+})
+local Button = Tab:CreateButton({
+	Name = "SNXW Hub",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/SxnwDev/Premier/main/Free-Premier.lua", true))()
+	end,
+})
+local Button = Tab:CreateButton({
+	Name = "Meow Hub",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/L1ZOT/Project-PJM/main/shinido"))()
+	end,
+})
+local Button = Tab:CreateButton({
+	Name = "Bloodline Changer/bag",
+	Callback = function()
+loadstring(game:HttpGet("https://gist.githubusercontent.com/Error-IDK/dc3e3f068fc9fb1936e9914a276f685d/raw/3832f2dd5eae811abe39156c1db76add0e5c6860/gistfile1.txt"))()
+	end,
+})

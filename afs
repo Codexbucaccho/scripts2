@@ -1,0 +1,87 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+getgenv().SecureMode = true
+
+local Window = Rayfield:CreateWindow({
+	Name = "Anime Fighters Simulator - Furk Ultra",
+	LoadingTitle = "Anime Fighters Simulator - Furk Ultra",
+	LoadingSubtitle = "Brought to you by Furk Ultra",
+})
+local Tab = Window:CreateTab("Main GUI's")
+local Section = Tab:CreateSection("Anime Fighters Simulator Main GUI's")
+local Label = Tab:CreateLabel("Thanks for using Furk Ultra!")
+local TabMobile = Window:CreateTab("Dupe Script")
+local SectionMobile = TabMobile:CreateSection("Dupe Script")
+
+local Button = Tab:CreateButton({
+	Name = "#1 - Banana Hub Key : bananaBest",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/diepedyt/bui/main/temporynewkeysystem.lua"))()
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "OP - Platinium Hub",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ZaRdoOx/Loader/main/PlatiniumLoader"))()
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "KJ Hub",
+	Callback = function()
+loadstring(game.HttpGet(game, "https://raw.githubusercontent.com/KiJinGaming/FreeScript/main/KJHub.lua"))()
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "Hoho Hub",
+	Callback = function()
+loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "Tiny Task Hub",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Gohan9k/ANIMEFIGHTERS/main/GOHANSSJ3"))()
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "Deadtired Hub",
+	Callback = function()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/pspboy08/dollhouse/main/AFSGUI.lua')))()
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "Shrawu Hub",
+	Callback = function()
+loadstring(game:HttpGet("https://paste.ee/r/W7jY4/0", true))()
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "More Coming Soon!"
+})
+
+
+local Label = TabMobile:CreateLabel("How to Dupe")
+local Label = TabMobile:CreateLabel("Requirement : Pet Vaults Unlocked")
+local Label = TabMobile:CreateLabel("1. Activate Dataloss from any method below")
+local Label = TabMobile:CreateLabel("2. Trade items away (to an alt or whatever)")
+local Label = TabMobile:CreateLabel("3. Rejoin")
+
+local Button = TabMobile:CreateButton({
+	Name = "BEST - Tobias Dupe",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Tobias020108Back/YBA-AUT/main/AFS-Dataloss-GUI.lua"))()
+	end,
+})
+
+local Button = TabMobile:CreateButton({
+	Name = "BadWare Dupe",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/sandwichk/RobloxScripts/main/Scripts/BadWare/Dupe/AFSim", true))()
+	end,
+})

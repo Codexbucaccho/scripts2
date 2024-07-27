@@ -1,0 +1,48 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+getgenv().SecureMode = true
+
+local Window = Rayfield:CreateWindow({
+	Name = "Jailbreak - Furk Ultra",
+	LoadingTitle = "Jailbreak - Furk Ultra",
+	LoadingSubtitle = "Brought to you by Furk Ultra",
+})
+local Tab = Window:CreateTab("Main GUI's")
+local Section = Tab:CreateSection("Jailbreak Main GUI's")
+local Label = Tab:CreateLabel("Thanks for using Furk Ultra!")
+
+local Button = Tab:CreateButton({
+	Name = "#1 - Project Auto (Auto Rob)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Pxsta72/ProjectAuto/main/free"))()
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "Sensation Hub",
+	Callback = function()
+loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/99606f43e2dac85f6afc1d93d0a02d2d.lua"))()
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "RedWire Hub",
+	Callback = function()
+loadstring(Game:HttpGet("https://raw.githubusercontent.com/RedWirePlatinumTwo/RobloxScripts/main/JailbreakGUI.lua"))()
+	end,
+})
+local Button = Tab:CreateButton({
+	Name = "Kill Aura",
+	Callback = function()
+loadstring(Game:HttpGet("https://gist.githubusercontent.com/TonyX03/9554382611e362d190d881e0d9c50b47/raw/1babff1e7ecb2895ba735ae0c1cdb46b867b8abb/gistfile1.txt"))()
+	end,
+})
+local Button = Tab:CreateButton({
+	Name = "Silent Aim + Wallbang",
+	Callback = function()
+loadstring(Game:HttpGet("https://gist.githubusercontent.com/TonyX03/9f79d98a23caf0cc9ed8a596c9ec4809/raw/7778fe09cdeb651beddc8c642b58ef795bbe7283/gistfile1.txt"))()
+	end,
+})
+
+local Button = Tab:CreateButton({
+	Name = "More Coming Soon!"
+})

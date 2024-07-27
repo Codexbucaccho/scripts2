@@ -1,0 +1,119 @@
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+getgenv().SecureMode = true
+
+local Window = Rayfield:CreateWindow({
+	Name = "Arcane Odyssey - Furk Ultra",
+	LoadingTitle = "Arcane Odyssey - Furk Ultra",
+	LoadingSubtitle = "Brought to you by Furk Ultra",
+})
+local Tab = Window:CreateTab("Main GUI's")
+local TabB = Window:CreateTab("Utility Tab")
+local Section = Tab:CreateSection("Arcane Odyssey Main GUI's")
+local Label = Tab:CreateLabel("Thanks for using Furk Ultra!")
+local Label = TabB:CreateLabel("Thanks for using Furk Ultra!")
+
+local Button = Tab:CreateButton({
+	Name = "Xtrey Hub (Kill Aura, Farm, Fly, ESP)",
+	Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/xtrey10x/xtrey10x-hub/main/Arcane%20Odyssey%20Script"))()
+	end,
+})
+local Button = Tab:CreateButton({
+	Name = "Kidachi Hub (Auto Farm, Stats, Player Settings)",
+	Callback = function()
+loadstring(game:HttpGet('https://kidachi.xyz/Odyssey', true))()
+	end,
+})
+
+
+
+local Button = Tab:CreateButton({
+	Name = "Anya Hub (Key: 'w0wArcaneODDhahaFREE!')",
+	Callback = function()
+loadstring(game:HttpGet(('https://raw.githubusercontent.com/itsyouranya/free/main/arcaneodyssey.lua'),true))()
+	end,
+})
+local Button = TabB:CreateButton({
+	Name = "Chest ESP",
+	Callback = function()
+local ESP = loadstring(game:HttpGet("https://kiriot22.com/releases/ESP.lua"))()
+local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMinisterq/Notification-Library/Main/Library.lua"))()
+
+-- Chests --
+for i,v in pairs(game:GetDescendants()) do
+   if string.match(v.Name, " Chest") and v:FindFirstChild("Base") then
+       ESP:Add(v:FindFirstChild("Base"), {
+       Name = v.Name,
+       Color = Color3.fromRGB(255,0,0),
+       IsEnabled = "Chests"
+     })
+    end
+end
+
+game.DescendantAdded:Connect(function(v)
+   if string.match(v.Name, " Chest") and v:FindFirstChild("Base") then
+       NotificationLibrary:SendNotification("Info", "Chest Added:"..v.Name, 3)
+       ESP:Add(v:FindFirstChild("Base"), {
+       Name = v.Name,
+       Color = Color3.fromRGB(255,0,0),
+       IsEnabled = "Chests"
+     })
+   end
+end)
+
+   ESP.Players = false
+   ESP.Chests = true
+   ESP:Toggle(true)
+	end,
+})
+
+local Button = TabB:CreateButton({
+	Name = "Auto Fish (must have Wooden Rod)",
+	Callback = function()
+getgenv().toggle=true
+getgenv().fixedloc=true-- you can toggle this, turning this off will allow you to move to your own fishing spot.
+getgenv().rod="Wooden Rod"--[[
+Wooden Rod
+Collector's Rod
+Bronze Rod
+]]
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Disttt/-Arcane-Odyssey/main/AutoFish.lua"))()
+	end,
+})
+
+local Button = TabB:CreateButton({
+	Name = "Auto Fish (Can choose own fishing spot)",
+	Callback = function()
+getgenv().toggle=true
+getgenv().fixedloc=false-- you can toggle this, turning this off will allow you to move to your own fishing spot.
+getgenv().rod="Wooden Rod"--[[
+Wooden Rod
+Collector's Rod
+Bronze Rod
+]]
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Disttt/-Arcane-Odyssey/main/AutoFish.lua"))()
+	end,
+})
+
+local Button = TabB:CreateButton({
+	Name = "Godmode",
+	Callback = function()
+shared.godMode = true
+
+local player = game.Players.LocalPlayer
+local namecall; namecall = hookmetamethod(game, '__namecall', function(object, ...)
+local args = {...}
+
+if getnamecallmethod() == "FireServer" then
+   if shared.godMode then
+       if object.Name == 'DealWeaponDamage' and args[3] == player.Character then
+           args[3] = math.random(1,200);
+       elseif object.Name == 'DealBossDamage' and args[2] == player.Character then
+               args[2] = math.random(1,200);
+           end;
+       end;
+   end;
+   return namecall(object, unpack(args));
+end);
+	end,
+})

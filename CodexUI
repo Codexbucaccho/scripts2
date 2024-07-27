@@ -344,6 +344,7 @@ local framework = setmetatable({
 local _wlist = {
 	expiry = nil,
 	streak = 0,
+	showUI = true,
 }
 
 do
@@ -4469,7 +4470,7 @@ do
 							end)
 							if res then
 								if succcess and data ~= nil then
-									internalUtils:Notify(data.userFacingMessage)
+									utils:Notify(data.userFacingMessage)
 								end
 
 								changeTab(true)

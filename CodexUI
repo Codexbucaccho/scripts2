@@ -4468,6 +4468,10 @@ do
 								data = httpService:JSONDecode(response)
 							end)
 							if res then
+								if succcess and data ~= nil then
+									internalUtils:Notify(data.userFacingMessage)
+								end
+
 								changeTab(true)
 								return
 							end
@@ -4476,7 +4480,7 @@ do
 					Name = "register", 
 					Position = UDim2.new(0.5, 6, 0.5, 6), 
 					Size = UDim2.new(0, 160, 0, 32), 
-					Text = "Register", 
+					Text = "Register",
 				}),
 				textBox({
 					AnchorPoint = Vector2.new(0.5, 1), 

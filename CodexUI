@@ -4473,7 +4473,7 @@ do
 								data = httpService:JSONDecode(response)
 							end)
 							if res then
-								if succcess and data ~= nil then
+								if success and data and data.userFacingMessage then
 									utils:Notify(data.userFacingMessage)
 								end
 

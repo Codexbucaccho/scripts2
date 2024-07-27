@@ -344,7 +344,7 @@ local framework = setmetatable({
 local _wlist = {
 	expiry = nil,
 	streak = 0,
-	showUI = true,
+	showUI = false,
 }
 
 do

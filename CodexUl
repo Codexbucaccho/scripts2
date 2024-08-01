@@ -4237,9 +4237,9 @@ do
 	local function checkWhitelist()
 		if getgenv then
 			if _wlist.expiry ~= nil then
-				return _wlist.expiry, _wlist.streak
+				return true
 			end
-			
+
 			local data = {
 				expiry = 0,
 				streak = 0
